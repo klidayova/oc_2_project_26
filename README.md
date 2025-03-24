@@ -47,8 +47,8 @@ Then run [Jupyter Lab](https://jupyter.org) from within the `AI4Life_OC2_2024_26
 
 Inside the `notebooks` folder you will find notebooks for:
 
-- [Detection of fiducial particles in EM](notebooks/Detect_fiducial_particles_in_EM.ipynb)
-- [Detection of fiducial particles in LM](notebooks/Detect_fiducial_particles_in_LM.ipynb)
+- [Detecting the fiducial particles in EM images](notebooks/Detect_fiducial_particles_in_EM.ipynb)
+- [Detecting the fiducial particles in LM images](notebooks/Detect_fiducial_particles_in_LM.ipynb)
   
 
 ## Acknowledgements
