@@ -22,7 +22,7 @@ Initially, image alignment relied on manually selecting points of interest and u
 
 Nuclei would be ideal reference features. They were relatively easy to detect in LM images using [CellPose](https://www.cellpose.org/), however, they were impossible to detect in EM images. Methods like [SAM](https://segment-anything.com/), [Micro-SAM](https://github.com/computational-cell-analytics/micro-sam), [ConvPaint](https://github.com/guiwitz/napari-convpaint), or traditional segmentation techniques did not yield good results for EM. As a solution, the team had to use fiducial particles as reference markers.
 
-The fiducial particles in the LM image were detected using the Big-FISH Python package for spot detection. Cooresponding spots in EM images were located using template matching. Then the Probreg package was used for point cloud registration and finally the LM image was warped based on the resulting displacement. This workflow enables robust, fully automatic registration of LM and EM images for integrated biological analysis.
+The fiducial particles in the LM image were detected using the Big-FISH Python package for spot detection. Corresponding spots in EM images were located using template matching. Then the Probreg package was used for point cloud registration and finally the LM image was warped based on the resulting displacement field. This workflow enables robust, fully automatic registration of LM and EM images for integrated biological analysis.
 
 
 ## Installation
