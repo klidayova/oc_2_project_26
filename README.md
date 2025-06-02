@@ -61,17 +61,31 @@ Inside the `notebooks` folder you will find Jupyter notebooks for:
 
 ### Step 1 : [Detecting the fiducial particles in EM images](notebooks/Detect_fiducial_particles_in_EM.ipynb)
 
-  This notebook detects fiducial particles in electron microscopy (EM) images for use in CLEM workflows. The fiducial particles in EM image are characterized by bright rings with a dark center.
-The pipeline involves:
+  This notebook detects fiducial particles in electron microscopy (EM) images for use in CLEM workflows. The fiducial particles in EM image are characterized by bright rings with a dark center and can be detected using template matching.
+The pipeline consists of:
 
 1. **Fiducial particle detection**: Detection of fiducial particles is done using the template matching algorithm with an artificial template (dark-centered spot).
 2. **Cluster detection**: Filtering the set of individual fiducial particles by recognizing clusters of overlapping or closely located detections (≥3) and saving their centroids.
-3. **Results saving**: Saving the positions of all detected fiducial particles and the positions of fiducial clusters into various formats: .csv, .xml, and .ply for downstream analysis. 
+3. **Results saving**: Saving the positions of all detected fiducial particles and the positions of fiducial clusters into files in multiple formats (Pandas DataFrame, XML, PLY) for downstream analysis. 
 
 _Figure 3: Electron microscopy (EM) image with an enlarged cutout (left), the fiducial particle detection (result after step 1, middle), and the fiducial clusters detection (result after step 2, right)._
 
 ![EM-FP_detection](https://github.com/user-attachments/assets/c674ea56-de9f-4846-929e-cf53ed7f637d)
+
 ### Step 2 : [Detecting the fiducial particles in LM images](notebooks/Detect_fiducial_particles_in_LM.ipynb)
+
+  This notebook detects fiducial particles in light microscopy (LM) images for use in CLEM workflows. The fiducial particles in LM image are characterized by bright spots and can be detected using the Big-FISH Python package originally developed for smFISH image analysis.
+The pipeline consists of:
+
+1. **Spot detection** - Detection of fiducial particles using spot detection methods from Big-FISH package. It identifies individual regions of fiducial particles as local maxima in the LM image using filtering, thresholding, and detection techniques.
+2. **Dense region decomposition** - Recognizing larger and brighter (dense) spots as clusters and decomposing them into individual fiducial particles using Gaussian modeling and simulation.
+3. **Cluster detection** - Groups closely located spots into clusters based on spatial proximity and connectivity.
+4. **Results saving** - Saving the positions of all detected fiducial particles and the positions of fiducial clusters into files in multiple formats (Pandas DataFrame, XML, PLY) after upscaling the LM image to match EM image dimensions.
+
+_Figure 4: Light microscopy (LM) image (left), the fiducial particle regions detection (result after step 1, middle), and the fiducial particles [red circles] and clusters [green circles] detection (result after step 3 and 4, right)._
+
+![LM-FP_detection1](https://github.com/user-attachments/assets/735a0788-e19d-415b-9739-7ecd30676f4e)
+
 ### Step 3 : [Finding_correlation_between_EM_and_LM_images](notebooks/Finding_correlation_between_EM_and_LM_images.ipynb)
 
 ## Acknowledgements
