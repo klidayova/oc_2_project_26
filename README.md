@@ -86,7 +86,22 @@ _Figure 4: Light microscopy (LM) image (left), the fiducial particle regions det
 
 ![LM-FP_detection1](https://github.com/user-attachments/assets/735a0788-e19d-415b-9739-7ecd30676f4e)
 
-### Step 3 : [Finding_correlation_between_EM_and_LM_images](notebooks/Finding_correlation_between_EM_and_LM_images.ipynb)
+### Step 3 : [Finding correlation between EM and LM images](notebooks/Finding_correlation_between_EM_and_LM_images.ipynb)
+  
+  This notebook performs automated registration of fiducial particles detected in electron microscopy (EM) and light microscopy (LM) images. The goal is to align LM images to EM images using matched fiducial landmarks.
+The registration workflow consist of:
+
+1. **Loading fiducial locations** - Fiducial coordinates are imported from an .xml file for both EM (target) and LM (source) images.
+2. **Rescaling LM coordinates** - The LM fiducial coordinates are rescaled to match the coordinate system of the EM image.
+3. **Multilevel registration** - The algorithm performs a two-stage Coherent Point Drift (CPD) registration: first rigid, then non-rigid. It automatically identifies corresponding fiducial particles between the two modalities and assigns them matching IDs.
+4. **Warping the LM image** - The LM image is warped to correlate with the EM reference image using a displacement field computed from matched fiducial points.
+
+NOTE: An updated .xml file with matched point IDs can also be used directly in ec-CLEM software for image overlay without manual alignment.
+
+_Figure 5: Results of the registration algorithm. Warped LM image (result after step 4) with matched fiducial particles from EM image as red circles on top (result after step 3, left), the displacement field (result after step 4) with matched fiducial particles from EM image (middle), and EM image overlaid by a semitransparent warped LM image (DAPI channel and fiducial marker channel as two separate images, right)._
+
+![EM_overlaid_by_LM](https://github.com/user-attachments/assets/467e6293-0baa-440a-a9dc-4f48c568b478)
+
 
 ## Acknowledgements
 AI4Life has received funding from the European Union’s Horizon Europe research and innovation programme under grant agreement number 101057970. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Research Council Executive Agency. Neither the European Union nor the granting authority can be held responsible for them.
