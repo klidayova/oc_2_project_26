@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import open3d as o3d
 import matplotlib.pyplot as plt
+from scipy.ndimage import maximum_filter
 import xml.etree.ElementTree as ET
 
 color_values = [ '-154', '-3611080', '-13210', '-16777088', '-16744193', '-11776948', '-65408',
@@ -244,3 +245,61 @@ def euclidean_distance(df1, df2):
 def euclidean_distance(df):
     dist = np.sqrt((df['source_pos_x'] - df['target_pos_x'])**2 + (df['source_pos_y'] - df['target_pos_y'])**2)
     return dist
+
+
+def clean_close_points(points, threshold=10):
+    """
+    Remove points closer than `threshold` units to any previously kept point.
+    Points are processed in order, and earlier points are prioritized.
+    """
+    filtered = []
+    for p in points:
+        if all(np.linalg.norm(p - fp) >= threshold for fp in filtered):
+            filtered.append(p)
+    return np.array(filtered)
+
+def refine_to_local_maxima(coords, image, window_size=5):
+    """
+    Refine coordinates to the nearest local maximum in the image.
+    
+    Args:
+        coords: (y, x) coordinates to refine (shape: Nx2)
+        image: 2D image array
+        window_size: Size of neighborhood for local maxima detection (odd integer)
+    
+    Returns:
+        Refined coordinates as a NumPy array.
+    """
+    # Find local maxima in the entire image
+    local_max_mask = (image == maximum_filter(image, size=window_size))
+    
+    refined_coords = []
+    for y, x in coords:
+        # Define neighborhood bounds
+        y_min = max(y - window_size//2, 0)
+        y_max = min(y + window_size//2 + 1, image.shape[0])
+        x_min = max(x - window_size//2, 0)
+        x_max = min(x + window_size//2 + 1, image.shape[1])
+        
+        # Extract neighborhood and local maxima within it
+        neighborhood_max_mask = local_max_mask[y_min:y_max, x_min:x_max]
+        local_max_coords = np.argwhere(neighborhood_max_mask)
+        
+        if local_max_coords.size == 0:
+            refined_coords.append([y, x])  # No local max found
+            continue
+        
+        # Find closest local max to original coordinate
+        distances = np.linalg.norm(
+            local_max_coords - np.array([y - y_min, x - x_min]),
+            axis=1
+        )
+        closest_idx = np.argmin(distances)
+        local_max_y, local_max_x = local_max_coords[closest_idx]
+        
+        refined_coords.append([
+            y_min + local_max_y,
+            x_min + local_max_x
+        ])
+    
+    return np.array(refined_coords)
