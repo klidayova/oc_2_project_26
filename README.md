@@ -1,4 +1,4 @@
-<p align="center">
+![EM_overlaid_by_LM](https://github.com/user-attachments/assets/f0962786-32c3-4e36-a122-2933b2ca4fb4)<p align="center">
   <a href="https://ai4life.eurobioimaging.eu/open-calls/">
     <img src="https://github.com/ai4life-opencalls/.github/blob/main/AI4Life_banner_giraffe_nodes_OC.png?raw=true" width="70%">
   </a>
@@ -100,15 +100,11 @@ NOTE: An updated .xml file with matched point IDs can also be used directly in e
 
 _Figure 5: Results of the registration algorithm. Warped LM image (result after step 4) with matched fiducial particles from EM image as red circles on top (result after step 3, left), the displacement field (result after step 4) with matched fiducial particles from EM image (middle), and EM image overlaid by a semitransparent warped LM image (DAPI channel and fiducial marker channel as two separate images, right)._
 
-![EM_overlaid_by_LM](https://github.com/user-attachments/assets/467e6293-0baa-440a-a9dc-4f48c568b478)
+![EM_overlaid_by_LM](https://github.com/user-attachments/assets/9b6c647f-ce74-4dcd-b017-d612ad2d5bc9)
 
 
 ## Acknowledgements
 AI4Life has received funding from the European Union’s Horizon Europe research and innovation programme under grant agreement number 101057970. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Research Council Executive Agency. Neither the European Union nor the granting authority can be held responsible for them.
 
-
-## Contact
-
-[SciLifeLab BioImage Informatics Facility (BIIF)](https://www.scilifelab.se/units/bioimage-informatics/)
 
 Developed by [Kristína Lidayová](mailto:kristina.lidayova@scilifelab.se)
