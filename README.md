@@ -38,7 +38,7 @@ Install the [conda](https://conda.io) package, dependency and environment manage
 You can download this repository from the green `Code` button → download ZIP, or clone through the command line with
 
     cd <path to any folder of choice>
-    git clone https://github.com/BIIFSweden/AI4Life_OC2_2024_26.git
+    git clone https://github.com/ai4life-opencalls/oc_2_project_26.git
 
 Then create the `AI4Life_OC2_2024_26` conda environment:
 
